@@ -1,12 +1,21 @@
-﻿// cellular.cpp : Defines the entry point for the application.
-//
+#include "cellular.hpp"
+#include "cellular.hpp"
 
-#include "cellular.h"
+namespace ca {
 
-using namespace std;
+  namespace {
+  }
 
-int main()
-{
-	cout << "Hello CMake." << endl;
-	return 0;
+  State make_initial_state(size_t size)
+  {
+    auto state = ca::State(size, ca::EMPTY);
+    state[size / 2] = ca::FILLED;
+
+    return state;
+  }
+
+  State next(State state, Rule rule) {
+    return State(state.size(), EMPTY);
+  }
+
 }
