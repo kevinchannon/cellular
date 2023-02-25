@@ -5,8 +5,8 @@
 
 #include <iostream>
 
-constexpr auto iterations = size_t{ 20 };
-constexpr auto size = size_t{ 21 };
+constexpr auto iterations = size_t{ 100 };
+constexpr auto size = size_t{ 101 };
 constexpr auto rule = ca::Rule{ 30 };
 
 int main()

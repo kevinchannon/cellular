@@ -38,9 +38,21 @@ TEST_CASE("next() executes rule") {
 
     SECTION(std::format("Rule: {}, parent {}{}{}", rule, a, b, c)) {
       const auto result = ca::next({ a, b, c }, ca::Rule(rule));
-      const auto expected = (rule >> (x | y | z)) & 0x1 ? ca::FILLED : ca::EMPTY;
 
-      REQUIRE(expected == result[1]);
+      SECTION("left edge") {
+        const auto expected = (rule >> (0 | y | z)) & 0x1 ? ca::FILLED : ca::EMPTY;
+        REQUIRE(expected == result[0]);
+      }
+
+      SECTION("centre cell") {
+        const auto expected = (rule >> (x | y | z)) & 0x1 ? ca::FILLED : ca::EMPTY;
+        REQUIRE(expected == result[1]);
+      }
+
+      SECTION("right edge") {
+        const auto expected = (rule >> (x | y | 0)) & 0x1 ? ca::FILLED : ca::EMPTY;
+        REQUIRE(expected == result[2]);
+      }
     }
   }
 }
